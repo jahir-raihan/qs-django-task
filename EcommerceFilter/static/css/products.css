@@ -520,11 +520,14 @@ header .only-navicons:hover {
 }
 .product-list .products-grid .product-card {
   border-radius: 8px;
-  padding:.5em;
   border: 1px solid rgb(0 0 0 / 10%);
   box-shadow: -1px 3px 57px -46px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: -1px 3px 57px -46px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: -1px 3px 57px -46px rgba(0, 0, 0, 0.23);
+}
+
+.card-bottom{
+  padding:.5em;
 }
 .product-list .products-grid .product-card .p-c-img {
   position: relative;
@@ -534,7 +537,7 @@ header .only-navicons:hover {
   background:#f0fbff;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  padding: .5em;
   border-radius:8px;
 }
 .product-list .products-grid .product-card .p-c-img img {
@@ -544,7 +547,6 @@ header .only-navicons:hover {
 .product-list .products-grid .product-card .price {
   font-weight: 500;
   width: 90%;
-  margin: 1em auto 0 auto;
   display: flex;
 }
 .product-list .products-grid .product-card .price p {
@@ -561,14 +563,14 @@ header .only-navicons:hover {
 .product-list .products-grid .product-card .title {
   font-size: 14px;
   width: 90%;
-  margin: 0.5em auto;
   height: 60px;
 }
 .product-list .products-grid .product-card .p-c-btns {
   width: 90%;
   display: flex;
   align-items: center;
-  margin: 0 auto 1em auto;
+  margin:.5em 0;
+
 }
 .product-list .products-grid .product-card .p-c-btns button {
   height: 40px;

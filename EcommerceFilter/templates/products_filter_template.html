@@ -28,29 +28,26 @@
             </div>
 
 
-            {% if product.on_discount %}
-                 <div class="price">
-                    <p class="n-price">${{product.product_price}}</p>
-                     <p class="offer-price">$<span>{{product.discount_price}}</span></p>
-                 </div>
-            {% else %}
-                 <div class="price">
+            <div class="card-bottom">
+
+                <div class="price">
                     <p>$<span>{{product.product_price}}</span></p>
 
-                 </div>
-            {% endif %}
-            <p class="title">{{product.product_title}}</p>
+                </div>
+
+                <p class="title">{{product.product_title}}</p>
 
 
-            <div class="p-c-btns">
-                {% if product.product_in_stock %}
-                    <button class="add-to-cart"><i class="fas fa-shopping-cart" aria-hidden="true"></i> +</button>
-                {% else %}
-                     <button class="add-to-cart" style="background:gray; opacity:.6; cursor:not-allowed;" disabled>Out of stock</button>
-                {% endif %}
-                <button class="add-to-wishlist">
-                    <i class="far fa-heart"></i>
-                </button>
+                <div class="p-c-btns">
+                    {% if product.product_in_stock %}
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart" aria-hidden="true"></i> +</button>
+                    {% else %}
+                         <button class="add-to-cart" style="background:gray; opacity:.6; cursor:not-allowed;" disabled>Out of stock</button>
+                    {% endif %}
+                    <button class="add-to-wishlist">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
