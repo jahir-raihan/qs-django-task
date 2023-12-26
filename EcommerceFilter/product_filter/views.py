@@ -7,7 +7,6 @@ from .algorithms import filter_products
 from .models import Category, Product
 
 
-# Products Page
 def products(request):
 
     """Products page view , with filtering and searching capability"""

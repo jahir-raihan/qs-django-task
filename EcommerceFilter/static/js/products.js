@@ -87,12 +87,10 @@ filter_box.forEach((item) => {
 
     if (child[1].checked && !brands.has(child[0].innerHTML)){
       brands.add(child[0].innerHTML)
-
       trigger()
     } 
     else if (child[1].checked && brands.has(child[0].innerHTML)){
       brands.delete(child[0].innerHTML)
-
       trigger()
     }
   })
@@ -144,7 +142,6 @@ function change_sorting(){
     sort_icon.classList.remove('fa-sort-up')
     sort_icon.classList.add('fa-sort-down')
     sort_by_price = true
-
   }
 
   trigger()
@@ -160,7 +157,6 @@ let current_price_range = [0, 10000]
 function change_price(){
     current_price_range[0] = $('#p-min-range').val();
     current_price_range[1] = $('#p-max-range').val()
-
     trigger()
 }
 
@@ -170,9 +166,7 @@ var warranty_year = 0
 
 function warranty(year){
     warranty_year = year
-
     trigger()
-
 }
 
 // Trigger section, it will be responsible for filtering out the page 
@@ -193,7 +187,6 @@ function trigger(){
             price_range: current_price_range,
             warranty: warranty_year,
             search_query:search_query,
-
         }
     })
 

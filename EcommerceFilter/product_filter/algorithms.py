@@ -33,8 +33,7 @@ def filter_products(query_data):
         products_list = products_list.filter(brand__in=refinements)
 
     products_list = products_list.filter(
-        Q(brand__icontains=query) | Q(product_title__icontains=query) | Q(product_tags__icontains=query) |
-        Q(product_search_keyword__icontains=query)
+        Q(brand__icontains=query) | Q(product_title__icontains=query)
     )
 
     # Sorting if sort is selected
