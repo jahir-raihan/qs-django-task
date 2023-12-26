@@ -1,0 +1,387 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/bandcamp.svg' %}">
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <title>Products </title>
+    <script src="https://kit.fontawesome.com/a222b9eccb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/media_queries.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-logo nav-ham-logo">
+                <div class="ham-menu " id="nav-ham-menu" onclick="toggle_nav_menu()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+
+                <a href="{% url 'products' %}">
+                    <img src="{% static 'img/site_logo.png' %}" alt="Logo" class="logo">
+                </a>
+            </div>
+
+            <div>
+            </div>
+
+
+            <div class="nav-buttons">
+
+                <div class="only-navicons">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="cart-item-count" >0</span>
+                </div>
+
+                <button class="nav-btns my-cart-btn">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i> Cart
+                    <span class="cart-item-count" id="cart-item-count">0</span>
+                </button>
+
+            </div>
+
+        </nav>
+
+        <div class="toggle-nav " id="toggle-nav">
+
+            <ul>
+                <a href="#">
+                    <div >
+                        <p>Some Links</p>
+                        <small>Ready made products</small>
+                    </div>
+
+                    <p class="g-icon">></p>
+                </a>
+            </ul>
+
+        </div>
+
+        <div class="mobile-filter-container">
+            <div class="hidden-filter-mobile" id="hidden-filter-mobile">
+
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container" id="container">
+
+         <div class="navigator-products">
+            <div class="n-p-contents">
+                <a href="{% url 'products' %}">Products ></a>
+            </div>
+
+        </div>
+
+        <!-- Product Container -->
+
+        <div class="product-container">
+
+            <!-- Filter Container -->
+
+            {% csrf_token %}
+
+            <div class="filter-container" id="main-filter-container">
+
+                <div class="filter" id="filter-contents">
+                    <div class="close-filter d-none" id="close-filter">
+                        <div></div>
+                        <i class="fa fa-times" onclick="enable_hidden_filter(false)"></i>
+
+                    </div>
+                    <div class="line"></div>
+                     <div class="price-range filter-item">
+
+                        <div class="filter-item-top">
+                            <p>Price Range</p>
+                            <i style="font-size:24px" class="fa">&#xf107;</i>
+                        </div>
+
+                        <div class="range">
+
+                            <input type="number" class="min" min="0" max="4500" id="p-min-range" value="0" step="10" onchange="change_price()">
+                            <span> To </span>
+                            <input type="number" class="max" min="500" max="5000" id="p-max-range" value="10000" step="10" onchange="change_price()">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="category-container filter-item">
+                        <div class="filter-item-top">
+                            <p>Categories</p>
+                            <i style="font-size:24px" class="fa">&#xf107;</i>
+                        </div>
+
+                        {% for category in categories %}
+                        <p class="category" cat_id="{{category.id}}" id="category_id{{category.id}}">{{category.category_name}}</p>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="meterial filter-item">
+
+                        <div class="filter-item-top">
+                            <p>Brands</p>
+                            <i style="font-size:24px" class="fa">&#xf107;</i>
+                        </div>
+
+                        <form>
+
+                            
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox1">
+                                    
+                                    <p>Xiaomi</p>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox2">
+                                    
+                                    <p>Samsung</p>
+
+                                    <input type="checkbox" >
+                                    <span class="checkmark" id="checkmark-2"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox3" >
+                                    
+                                    <p>Apple</p>
+
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox4">
+                                    
+                                    <p>Huawei</p>
+
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox5">
+                                    
+                                    <p>DM</p>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox6">
+                                    
+                                    <p>Toshiba</p>
+
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                            <div class="filter-box">
+                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox7">
+                                    
+                                    <p>Walton</p>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+                    <div class="condition filter-item">
+                        <div class="filter-item-top">
+                            <p>Warranty</p>
+                            <i style="font-size:24px" class="fa">&#xf107;</i>
+                        </div>
+
+                        <div class="warranty-container">
+
+                            <label class="custom-check-container offerings-checkbox">
+                                <p>1 Year</p>
+                                <input type="radio" value="1" name="warranty" onchange="warranty(1)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="custom-check-container offerings-checkbox">
+                                <p>2 Year</p>
+                                <input type="radio" value="2"  name="warranty" onchange="warranty(2)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="custom-check-container offerings-checkbox">
+                                <p>3 Year</p>
+                                <input type="radio" value="3" name="warranty" onchange="warranty(3)">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- End Filter Container -->
+
+            <!-- Product List -->
+
+            <div class="product-list" id="product-list">
+                
+                <div class="product-list-top">
+
+                    <div class="p-l-t-ham-and-search">
+
+                        <div class="hidden-filter-icon">
+                            <i class="fa fa-sliders" onclick="enable_hidden_filter(true)"></i>
+
+                        </div>
+                  
+
+                        <div class="product-list-search search-container-global">
+
+                        
+
+                            <input type="text" id="nav-search" oninput="search_query_input()" placeholder="Search a product . . . ">
+                            <button><i class="fa fa-fw fa-search"></i></button>
+
+                            <!-- To hide contents below, illegally -->
+                            
+
+                            <div class="search-result-suggestion d-none" id="s-r-s">
+                                <ul id="s-list">
+
+                                </ul>
+                            </div>
+                        </div> 
+                    </div>
+
+                    
+
+                    <div class="sort-by-price">
+                        <div></div>
+                        <div class="s-b-p" onclick="change_sorting()">
+                            <p>Sort by price </p>
+                            <i class="fas fa-sort" id="sort-icon"></i>
+                        </div>
+                        
+                    </div>
+
+                    <div class="loader" id="loader-product-page">
+                        <i style="opacity:.5" class="fas fa-cog fa-spin"></i>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+
+                <div class="p-grid-container">
+
+                    <ol class="products-grid" id="products-grid">
+
+                        {% for product in products %}
+                        <li>
+
+                            <div class="product-card" id="product-{{product.id}}">
+
+                                <div class="product-card-and-view-mask">
+
+                                    {% if not product.product_in_stock %}
+                                        <div class="extra-msg out">
+                                            <p>Out of stock</p>
+                                        </div>
+                                    {% elif product.on_discount %}
+                                        <div class="extra-msg offer">
+                                            <p>{{product.discount_reason.discount_reason |upper}} <i>{{product.discount_percentage}}% OFF</i></p>
+                                        </div>
+                                    {% endif %}
+
+                                    <a href="#">
+                                        <div class="view-mask">
+                                            <p>View Details</p>
+                                        </div>
+                                    </a>
+
+                                    <div class="p-c-img">
+                                        <img draggable="false" id="p_img-{{product.id}}"  src="{{product.product_primary_image.url}}" alt="{{product.product_search_keyword}}">
+                                    </div>
+                                </div>
+
+                                <div class="line"></div>
+
+
+                                {% if product.on_discount %}
+                                     <div class="price">
+                                        <p class="n-price">${{product.product_price}}</p>
+                                         <p class="offer-price">$<span>{{product.discount_price}}</span></p>
+                                     </div>
+                                {% else %}
+                                     <div class="price">
+                                        <p>$<span>{{product.product_price}}</span></p>
+
+                                     </div>
+                                {% endif %}
+                                <p class="title">{{product.product_title}}</p>
+
+
+                                <div class="p-c-btns">
+                                    {% if product.product_in_stock %}
+                                        <button class="add-to-cart">Add to cart</button>
+                                    {% else %}
+                                         <button class="add-to-cart" style="background:gray; opacity:.6; cursor:not-allowed;" disabled>Out of stock</button>
+                                    {% endif %}
+                                    <button class="add-to-wishlist">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </li>
+                        {% endfor %}
+
+                    </ol>
+
+                </div>
+
+                <!-- End Products Grid -->
+
+            </div>
+
+            <!-- End Product List -->
+
+        </div>
+
+        <!-- End Product Container -->
+
+    </div>
+
+    <script src="{% static 'js/products.js' %}"></script>
+
+</body>
+</html>
