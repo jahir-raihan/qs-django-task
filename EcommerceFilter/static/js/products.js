@@ -169,6 +169,31 @@ function warranty(year){
     trigger()
 }
 
+// Seller
+let sellers = new Set(); // Set for storing
+
+
+let seller_box = document.querySelectorAll('.seller-box');
+
+// If any tag checkbox is checked or unchecked , this function will invoke and will add or remove tags
+
+seller_box.forEach((item) => {
+  item.addEventListener('click', function(){
+
+    var child = item.children[0].children
+
+    if (child[1].checked && !sellers.has(child[1].value)){
+      sellers.add(child[1].value)
+      trigger()
+    }
+    else if (child[1].checked && sellers.has(child[1].value)){
+      sellers.delete(child[1].value)
+      trigger()
+    }
+
+  })
+})
+
 // Trigger section, it will be responsible for filtering out the page 
 
 function trigger(){
@@ -187,6 +212,7 @@ function trigger(){
             price_range: current_price_range,
             warranty: warranty_year,
             search_query:search_query,
+            sellers: Array.from(sellers)
         }
     })
 

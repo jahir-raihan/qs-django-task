@@ -12,12 +12,18 @@ def filter_products(query_data):
     price_range = query_data.getlist('price_range[]')
     sort = query_data['sort_by_price']
     warranty_years = query_data['warranty']
+    seller_ids = [seller for seller in query_data.getlist('sellers[]')]
 
     # Filtering by price range
     products_list = Product.objects.filter(
         Q(product_price__gte=int(price_range[0] if price_range[0] != '' else 0)) &
         Q(product_price__lte=int(price_range[1] if price_range[1] != '' else 10000))
     )
+
+    # Filter by sellers
+    if seller_ids:
+        sellers = Seller.objects.filter(pk__in=seller_ids)
+        products_list = products_list.filter(seller__in=sellers)
 
     # Filtering by category
     if category != '':

@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.middleware.csrf import get_token
 
 from .algorithms import filter_products
-from .models import Category, Product
+from .models import Category, Product, Seller
 
 
 def products(request):
@@ -38,11 +38,13 @@ def products(request):
 
     # For filtering purpose
     categories = Category.objects.all()
+    sellers = Seller.objects.all()
 
     context = {
         'products': products_list,
         'search_keywords': search_keywords,
         'categories': categories,
+        'sellers': sellers
     }
     return render(request, 'products.html', context)
 

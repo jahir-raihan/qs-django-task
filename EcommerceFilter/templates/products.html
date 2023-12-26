@@ -181,33 +181,37 @@
                             <div class="filter-box">
                                 <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox5">
                                     
-                                    <p>DM</p>
+                                    <p>JBL</p>
                                     <input type="checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 
                             </div>
 
-                            <div class="filter-box">
-                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox6">
-                                    
-                                    <p>Toshiba</p>
+                        </form>
 
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                
-                            </div>
 
-                            <div class="filter-box">
-                                <label class="custom-check-container refinements-input-checkbox" id="refinements-input-checkbox7">
-                                    
-                                    <p>Walton</p>
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                
-                            </div>
+                    </div>
+                    <div class="meterial filter-item">
+
+                        <div class="filter-item-top">
+                            <p>Sellers</p>
+                            <i style="font-size:24px" class="fa">&#xf107;</i>
+                        </div>
+
+                        <form>
+
+                            {% for seller in sellers %}
+                                <div class="seller-box">
+                                    <label class="custom-check-container seller-input-checkbox" id="seller-input-checkbox{{seller.id}}">
+
+                                        <p>{{seller.seller_name}}</p>
+                                        <input type="checkbox" value="{{seller.id}}" id="seller-checked-{{seller.id}}">
+                                        <span class="checkmark"></span>
+                                    </label>
+
+                                </div>
+                            {% endfor %}
 
                         </form>
 
@@ -315,11 +319,9 @@
                                     </a>
 
                                     <div class="p-c-img">
-                                        <img draggable="false" id="p_img-{{product.id}}"  src="{{product.product_primary_image.url}}" alt="{{product.product_search_keyword}}">
+                                        <img draggable="false" loading="lazy" id="p_img-{{product.id}}"  src="{{product.product_primary_image.url}}" alt="{{product.product_search_keyword}}">
                                     </div>
                                 </div>
-
-                                <div class="line"></div>
 
 
                                 {% if product.on_discount %}
@@ -338,7 +340,7 @@
 
                                 <div class="p-c-btns">
                                     {% if product.product_in_stock %}
-                                        <button class="add-to-cart">Add to cart</button>
+                                        <button class="add-to-cart"><i class="fas fa-shopping-cart" aria-hidden="true"></i> +</button>
                                     {% else %}
                                          <button class="add-to-cart" style="background:gray; opacity:.6; cursor:not-allowed;" disabled>Out of stock</button>
                                     {% endif %}
