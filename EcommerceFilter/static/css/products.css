@@ -519,7 +519,7 @@ header .only-navicons:hover {
   display: contents;
 }
 .product-list .products-grid .product-card {
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgb(0 0 0 / 10%);
   box-shadow: -1px 3px 57px -46px rgba(0, 0, 0, 0.23);
   -webkit-box-shadow: -1px 3px 57px -46px rgba(0, 0, 0, 0.23);
@@ -538,7 +538,7 @@ header .only-navicons:hover {
   justify-content: center;
   align-items: center;
   padding: .5em;
-  border-radius:8px;
+  border-radius:12px;
 }
 .product-list .products-grid .product-card .p-c-img img {
   max-width:100%;
